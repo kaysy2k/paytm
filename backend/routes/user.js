@@ -32,7 +32,7 @@ router.post("/signup", async (req, res) => {
 
     // find if user already exists
     const existingUser = await User.findOne({
-        username: req.body.username
+        username: req.body.email
     });
 
     // return it already exists
@@ -48,7 +48,7 @@ router.post("/signup", async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName
     });
-
+    console.log("account created");
     const userId = user._id;
 
     await Account.create({
@@ -59,7 +59,7 @@ router.post("/signup", async (req, res) => {
     const token = jwt.sign({
         userId
     }, JWT_SECRET);
-
+    console.log("jwt signed");
     res.json({
         message: "User created successfully",
         token: token
