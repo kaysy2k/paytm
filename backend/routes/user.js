@@ -3,8 +3,12 @@ const zod = require("zod");
 const { User, Account } = require("../db");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../config");
+const { JWT_SECRET } = require('../config');
 const { authMiddleware } = require("../middleware");
+
+if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET is not defined. Please set it in the config file.');
+}
 
 
 const signupBody = zod.object({
@@ -86,18 +90,19 @@ router.post("/signin", async (req, res) => {
             userId: user._id
         }, JWT_SECRET)
 
-        res.json({
+        return res.json({
             token: token
         })
     }
 
-    res.status(411).json({
+    return res.status(411).json({
         message: "Error while logging in"
     })
 
 });
 
 const updateBody = zod.object({
+    username: zod.string().optional(),
     password: zod.string().optional(),
     firstName: zod.string().optional(),
     lastName: zod.string().optional()
