@@ -10,7 +10,7 @@ function Signup() {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -30,7 +30,7 @@ function Signup() {
             label={"Last Name"}
           />
           <InputBox
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
             placeholder="jhondoe@email.com"
             label={"Email"}
           />
@@ -43,10 +43,10 @@ function Signup() {
             <Button 
             onClick={() => {
               axios.post("http://localhost:3000/api/v1/user/signup", {
+                username,
+                password,
                 firstName,
-                lastName,
-                email,
-                password
+                lastName
               })
             }}
             label={"Sign Up"} />

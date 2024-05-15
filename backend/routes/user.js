@@ -32,7 +32,7 @@ router.post("/signup", async (req, res) => {
 
     // find if user already exists
     const existingUser = await User.findOne({
-        username: req.body.email
+        username: req.body.username
     });
 
     // return it already exists
