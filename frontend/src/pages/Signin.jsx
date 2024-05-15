@@ -1,9 +1,8 @@
-import React from 'react'
-import Heading from '../components/Heading'
-import SubHeading from '../components/SubHeading'
-import InputBox from '../components/InputBox'
-import Button from '../components/Button'
-import BottomWarning from '../components/BottomWarning'
+import {Heading} from '../components/Heading'
+import {SubHeading} from '../components/SubHeading'
+import {InputBox} from '../components/InputBox'
+import {Button} from '../components/Button'
+import {BottomWarning} from '../components/BottomWarning'
 
 function Signin() {
   return (
@@ -24,4 +23,4 @@ function Signin() {
   )
 }
 
-export default Signin
+export default Signin;
