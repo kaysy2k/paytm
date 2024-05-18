@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 
 export const Dashboard = () => {
     const [balance, setBalance] = useState(null);
+    const [logo, setLogo] = useState("");
 
     useEffect(() => {
         const fetchBalance = async () => {
@@ -15,6 +16,7 @@ export const Dashboard = () => {
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
                 });
+                console.log(response.data);
                 
                 setBalance(response.data.balance);
             } catch (error) {
@@ -26,7 +28,7 @@ export const Dashboard = () => {
     }, []);
 
     return <div>
-        <Appbar />
+        <Appbar logo={"logo"} />
         <div className="m-8">
             <Balance value={balance !== null ? balance : "Loading ..."} />
             <Users />
